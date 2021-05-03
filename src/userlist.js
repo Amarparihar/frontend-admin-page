@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "./usercontext";
+
 export default function UserList(){
+let userData = useContext(UserContext);
     return(
         <>
             
@@ -19,51 +23,40 @@ export default function UserList(){
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                            <th>Action</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email Id</th>
+                                            <th>Password</th>
+                                            <th>Action Edit</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                            <th>Action</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email Id</th>
+                                            <th>Password</th>
+                                            <th>Action Edit</th>
+                                            
+                                            
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                            <th>
-                                            <Link to="/useredit/1">useredit</Link>
-                                            </th>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                            <th>
-                                                <Link to="/useredit/2">useredit</Link>
-                                            </th>
-
-                                        </tr>
+                                        {
+                                            userData.userList.map((obj)=>{
+                                                return <tr>
+                                                <td>{obj.firstName}</td>
+                                                <td>{obj.lastName}</td>
+                                                <td>{obj.email}</td>
+                                                <td>{obj.password}</td>
+                                                <th>
+                                                <Link to="/useredit/1">useredit</Link>
+                                                </th>
+                                                
+                                            </tr>
+                                            })
+                                        }
                                        
                                     </tbody>
                                 </table>

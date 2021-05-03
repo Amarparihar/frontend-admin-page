@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "./usercontext"
 export default function ProductList(){
+
+let userData= useContext(UserContext);
+
     return(
         <>
             <h1 class="h3 mb-2 text-gray-800">Tables</h1>
@@ -23,38 +28,35 @@ export default function ProductList(){
                                             <th>Product Name</th>
                                             <th>ID</th>
                                             <th>Brand</th>
-                                            <th>Description</th>
                                             <th>Price</th>
-                                            <th>Action</th>
+                                            <th>Description</th>
+                                            <th>Action Edit</th>
+                                            <th>Action Delete</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
-                                        <tr>
-                                            <td>boat543 Earphone</td>
-                                            <td>12345</td>
-                                            <td>Boat</td>
-                                            <td>Black,wired</td>
-                                            <td>1000</td>
-                                           <td>
-                                               <Link to="/productedit/1">
-                                                   <button className="btn btn-info">Edit Product</button>
-                                               </Link>
-                                           </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>JBL100 Earphone</td>
-                                            <td>1345</td>
-                                            <td>JBL</td>
-                                            <td>Black, Wireless</td>
-                                            <td>2000</td>
-                                            <td>
-                                                <Link to="/productedit/2">
-                                                    <button className="btn btn-info">Edit Product</button>
-                                                </Link>
-                                            </td>
-                                        </tr>
+                                        {
+                                            userData.userList.map((obj)=>{
+                                                return<tr>
+                                                <td>{obj.productName}</td>
+                                                <td>{obj.productId}</td>
+                                                <td>{obj.productBrand}</td>
+                                                <td>{obj.price}</td>
+                                                <td>{obj.description}</td>
+                                               <td>
+                                                   <Link to="/productedit/1">
+                                                       <button className="btn btn-info">Edit Product</button>
+                                                   </Link>
+                                               </td>
+                                               <td>
+                                                    <button className="btn btn-danger">Delete</button>
+                                               </td>
+    
+                                            </tr>
+                                            })
+                                        }
+                                        
                                        
                                     </tbody>
                                 </table>

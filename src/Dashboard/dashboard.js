@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Card from "./card";
+import { useContext } from "react";
+import UserContext from "../usercontext";
 
 export default function Dashboard() {
+let data= useContext(UserContext);
+
     let cardDetails =[
         {
             plan: "Earnings (Monthly)",
@@ -37,7 +41,7 @@ export default function Dashboard() {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+        <h1 className="h3 mb-0 text-gray-800">Dashboard </h1>
         <span
           
           className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
