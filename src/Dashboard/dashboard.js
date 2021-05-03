@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Card from "./card";
-import { useContext } from "react";
-import UserContext from "../usercontext";
+
 
 export default function Dashboard() {
-let data= useContext(UserContext);
 
     let cardDetails =[
         {

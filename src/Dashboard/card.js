@@ -1,9 +1,7 @@
-import { useContext } from "react";
-import UserContext from '../usercontext';
+
 
 export default function Card(props) {
-let data = useContext(UserContext)
-console.log(data);
+
     let displayValue =()=>{
         props.handleCard(props.data.value);
     }
