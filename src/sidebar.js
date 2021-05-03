@@ -6,9 +6,9 @@ export default function Sidebar() {
         className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
-        <a
+        <span
           className="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+         
         >
           <div className="sidebar-brand-icon rotate-n-15">
             <i className="fas fa-laugh-wink"></i>
@@ -16,7 +16,7 @@ export default function Sidebar() {
           <div className="sidebar-brand-text mx-3">
             SB Admin <sup>2</sup>
           </div>
-        </a>
+        </span>
 
         <hr className="sidebar-divider my-0" />
 
@@ -75,12 +75,12 @@ export default function Sidebar() {
             <strong>SB Admin Pro</strong> is packed with premium features,
             components, and more!
           </p>
-          <a
+          <span
             className="btn btn-success btn-sm"
-            href="https://startbootstrap.com/theme/sb-admin-pro"
+            
           >
             Upgrade to Pro!
-          </a>
+          </span>
         </div>
       </ul>
     </>
