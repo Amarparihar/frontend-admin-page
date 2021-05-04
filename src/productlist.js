@@ -37,7 +37,7 @@ let userData= useContext(UserContext);
                                     
                                     <tbody>
                                         {
-                                            userData.userList.map((obj)=>{
+                                            userData.productList.map((obj)=>{
                                                 return<tr>
                                                 <td>{obj.productName}</td>
                                                 <td>{obj.productId}</td>

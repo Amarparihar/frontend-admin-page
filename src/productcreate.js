@@ -19,7 +19,7 @@ let userData = useContext(UserContext);
                </div>
                <form onSubmit={(e)=>{
                    e.preventDefault();
-                   userData.setUserList([...userData.userList,{
+                   userData.setProductList([...userData.productList,{
                        productName,
                        productId,
                        productBrand,
