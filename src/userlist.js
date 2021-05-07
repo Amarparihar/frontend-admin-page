@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "./usercontext";
 
 export default function UserList(){
 let userData = useContext(UserContext);
+let[userList,setUserList]= useState([]);
+
+useEffect(async ()=>{
+    let users= await fetch("https://605da6189386d200171baf68.mockapi.io/users");
+    let userData = await users.json();
+    console.log(userData)
+    setUserList([...userData])
+
+},[])
     return(
         <>
             
@@ -19,7 +28,8 @@ let userData = useContext(UserContext);
                             <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                            {
+                                userList.length > 0 ? <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -44,14 +54,14 @@ let userData = useContext(UserContext);
                                     </tfoot>
                                     <tbody>
                                         {
-                                            userData.userList.map((obj)=>{
+                                            userList.map((obj)=>{
                                                 return <tr>
                                                 <td>{obj.firstName}</td>
                                                 <td>{obj.lastName}</td>
                                                 <td>{obj.email}</td>
                                                 <td>{obj.password}</td>
                                                 <th>
-                                                <Link to="/useredit/1">useredit</Link>
+                                                <Link to={`/useredit/${obj.id}`}>useredit</Link>
                                                 </th>
                                                 
                                             </tr>
@@ -60,7 +70,11 @@ let userData = useContext(UserContext);
                                        
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>: <>
+                            <h1>Loading</h1>
+                            </>
+                            }
+                            
                         </div>
                     </div>
 

@@ -1,13 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import  UserContext  from "./usercontext";
+
 export default function UserCreate(){
+
     let [firstName,setFirstName] = useState("");
     let [lastName,setLastName] = useState("");
     let [email,setEmail] = useState("");
     let [password,setPassword] = useState("");
     
     let userData= useContext(UserContext);
+
+//component life cycle
+
+//creating 
+useEffect(()=>{
+    console.log("during creation");
+},[])
+
+//destroying
+useEffect(()=>{
+    return()=>{
+        console.log("during destroytion");
+    }
+},[])
+
+//updating
+useEffect(()=>{
+    console.log("during the value/props changed");
+},[firstName])
+
     return(
         <>
             <div className="container">
@@ -16,7 +38,7 @@ export default function UserCreate(){
                         <h3>User Form</h3>
                     </div>
                 </div>
-                <form onSubmit={(e)=>{
+                <form onSubmit={async (e)=>{
                     e.preventDefault();
                     userData.setUserList([...userData.userList,{
                         firstName,
@@ -24,6 +46,20 @@ export default function UserCreate(){
                         email,
                         password
                     }])
+
+                    
+                    await fetch("https://605da6189386d200171baf68.mockapi.io/users",{
+                        method: "POST",
+                        body: JSON.stringify({
+                            firstName,
+                            lastName,
+                            email,
+                            password
+                        }),
+                        headers:{
+                            "content-type":"application/json"
+                        }
+                    })
                 }}>
                 <div className="row">
                     <div className="col-lg-6">

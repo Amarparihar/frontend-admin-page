@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "./usercontext"
+import {  useEffect, useState } from "react";
+
 export default function ProductList(){
 
-let userData= useContext(UserContext);
+    
+
+
+
+let[productlist,setProductlist] = useState([]);
+
+useEffect(async () =>{
+   let product = await fetch("https://605da6189386d200171baf68.mockapi.io/Products");
+   let productData = await product.json();
+   console.log(productData);
+   setProductlist([...productData])
+
+},[])
+
+
 
     return(
         <>
@@ -37,7 +51,8 @@ let userData= useContext(UserContext);
                                     
                                     <tbody>
                                         {
-                                            userData.productList.map((obj)=>{
+                                            productlist.map((obj,index)=>{
+                                                console.log(obj)
                                                 return<tr>
                                                 <td>{obj.productName}</td>
                                                 <td>{obj.productId}</td>
@@ -45,12 +60,20 @@ let userData= useContext(UserContext);
                                                 <td>{obj.price}</td>
                                                 <td>{obj.description}</td>
                                                <td>
-                                                   <Link to="/productedit/1">
+                                                   <Link to={`/productedit/${obj.id}`}>
                                                        <button className="btn btn-info">Edit Product</button>
                                                    </Link>
                                                </td>
                                                <td>
-                                                    <button className="btn btn-danger">Delete</button>
+                                                    <button className="btn btn-danger" onClick={async ()=>{
+                                                         await fetch(`https://605da6189386d200171baf68.mockapi.io/Products/${obj.id}`,{
+                                                             method:"DELETE"
+                                                
+                                                         });
+
+                                                         setProductlist(productlist.splice(index,0))
+
+                                                    }}>Delete</button>
                                                </td>
     
                                             </tr>

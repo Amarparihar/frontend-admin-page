@@ -17,7 +17,7 @@ let userData = useContext(UserContext);
                        <h3>Here we are going to Create Products</h3>
                    </div>
                </div>
-               <form onSubmit={(e)=>{
+               <form onSubmit={async (e)=>{
                    e.preventDefault();
                    userData.setProductList([...userData.productList,{
                        productName,
@@ -26,6 +26,28 @@ let userData = useContext(UserContext);
                        price,
                        description
                    }])
+
+                   setProductName("");
+                   setProductBrand("");
+                   setProductId("");
+                   setPrice("");
+                   setDescription("");
+
+
+                 await  fetch("https://605da6189386d200171baf68.mockapi.io/Products",{
+                     method: "POST",
+                     body: JSON.stringify({
+                        productName,
+                        productId,
+                        productBrand,
+                        price,
+                        description
+                    }),
+                   headers:{
+                    "content-type": "application/json"
+                   }
+
+                   })
                }}>
                <div className="row">
                    <div className="col-lg-6">
