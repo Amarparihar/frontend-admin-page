@@ -47,6 +47,11 @@ useEffect(()=>{
                         password
                     }])
 
+                    setFirstName("");
+                    setLastName("");
+                    setEmail("");
+                    setPassword("");
+
                     
                     await fetch("https://605da6189386d200171baf68.mockapi.io/users",{
                         method: "POST",

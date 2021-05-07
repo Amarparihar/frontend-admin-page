@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import UserContext from "./usercontext";
+import {  useEffect, useState } from "react";
 
 export default function UserList(){
-let userData = useContext(UserContext);
+
 let[userList,setUserList]= useState([]);
 
-useEffect(async ()=>{
-    let users= await fetch("https://605da6189386d200171baf68.mockapi.io/users");
-    let userData = await users.json();
-    console.log(userData)
-    setUserList([...userData])
+useEffect(()=>{
+    async function fetchData(){
+        let users= await fetch("https://605da6189386d200171baf68.mockapi.io/users");
+        let userData = await users.json();
+        console.log(userData)
+        setUserList([...userData])
+        }
+        fetchData();
 
 },[])
     return(

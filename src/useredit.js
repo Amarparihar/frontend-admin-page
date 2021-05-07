@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useContext } from "react";
 import  UserContext  from "./usercontext";
 
@@ -7,7 +7,7 @@ import  UserContext  from "./usercontext";
 
 export default function UserEdit(props){
     
-    console.log(props)
+    
 
     let [firstName,setFirstName] = useState("");
     let [lastName,setLastName] = useState("");
@@ -35,6 +35,10 @@ export default function UserEdit(props){
                         password
                     }])
 
+                    setFirstName("");
+                    setLastName("");
+                    setEmail("");
+                    setPassword("");
                     
                     await fetch(`https://605da6189386d200171baf68.mockapi.io/users/${props.match.params.id}`,{
                         method: "PUT",

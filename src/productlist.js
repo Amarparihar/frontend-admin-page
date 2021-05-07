@@ -9,11 +9,15 @@ export default function ProductList(){
 
 let[productlist,setProductlist] = useState([]);
 
-useEffect(async () =>{
-   let product = await fetch("https://605da6189386d200171baf68.mockapi.io/Products");
-   let productData = await product.json();
-   console.log(productData);
-   setProductlist([...productData])
+useEffect(() =>{
+    async function fetchData(){
+        let product = await fetch("https://605da6189386d200171baf68.mockapi.io/Products");
+        let productData = await product.json();
+        console.log(productData);
+        setProductlist([...productData])
+
+    }
+    fetchData();
 
 },[])
 

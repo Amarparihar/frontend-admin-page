@@ -32,6 +32,12 @@ export default function ProductEdit(props){
                        description
                    }])
 
+                   setProductName("");
+                   setProductBrand("");
+                   setProductId("");
+                   setPrice("");
+                   setDescription("");
+
                  await  fetch(`https://605da6189386d200171baf68.mockapi.io/Products/${props.match.params.id}`,{
                      method: "PUT",
                      body: JSON.stringify({
